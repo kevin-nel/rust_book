@@ -1,5 +1,6 @@
 #![allow(unused)]
 mod chapter_eight;
+mod chapter_eight_hw;
 mod chapter_five;
 mod chapter_four;
 mod chapter_one;
@@ -29,6 +30,8 @@ fn main() {
     // chapter_six::chapter_six();
     // println!("Chapter 7");
     // chapter_seven::chapter_seven();
-    println!("Chapter 8");
-    chapter_eight::chapter_eight();
+    // println!("Chapter 8");
+    // chapter_eight::chapter_eight();
+    println!("Chapter 8 HW");
+    chapter_eight_hw::chapter_eight_hw();
 }
