@@ -2,7 +2,9 @@
 // what is best practice for passing strings, vectors, arrays and hashmaps to an returning from functions?
 // what is happening to these values with regards to memory and ownership and they move in and out of functions and scope?
 
-use std::collections::HashMap;
+use std::{collections::HashMap, ops::Index};
+
+use rand::Error;
 
 pub fn chapter_eight_hw() {
     // median and mode of Vec<i32>
@@ -10,7 +12,13 @@ pub fn chapter_eight_hw() {
     let data = Data::new(&mut data); // the vector is now sorted and stored in a Data struct
     println!("{:?}", data);
 
-    string_to_pig_latin(&String::from("happy birth day my dude! 😋"));
+    // this gives an error
+    let ig_pay_atin_lay = string_to_pig_latin(&String::from("happy birth day my dude! 😋"));
+    println!("{ig_pay_atin_lay}");
+    // this works
+    let ig_pay_atin_lay = string_to_pig_latin(&String::from("happy birth day my dude!"));
+    println!("{ig_pay_atin_lay}");
+
     add_employee();
 }
 
@@ -58,9 +66,26 @@ impl Data {
     }
 }
 
-fn string_to_pig_latin(sentence: &str) -> String {
-    String::from("not yet implemented")
+fn string_to_pig_latin(sentence: &String) -> String {
     // Convert strings to pig latin. The first consonant of each word is moved to the end of the word and “ay” is added, so “first” becomes “irst-fay.” Words that start with a vowel have “hay” added to the end instead (“apple” becomes “apple-hay”). Keep in mind the details about UTF-8 encoding!
+    let vowels = "aeiou";
+    let mut pig_latin = String::from("");
+    for slice in sentence.split_whitespace() {
+        if slice.is_ascii() == true {
+            if vowels.contains(slice.chars().nth(0).unwrap()) == false {
+                let first_word = slice.get(1..).unwrap();
+                let second_word = slice.chars().nth(0).unwrap();
+                pig_latin = format!("{} {}-{}ay", pig_latin, first_word, second_word);
+            } else {
+                pig_latin = format!("{} {}-hay", pig_latin, slice);
+            }
+        } else {
+            return format!("invalid string: not ascii\ninput string: {}", sentence);
+        }
+    }
+
+    pig_latin = pig_latin[1..].to_string();
+    pig_latin
 }
 
 fn add_employee() {
