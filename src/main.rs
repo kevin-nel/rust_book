@@ -3,6 +3,7 @@ mod chapter_eight;
 mod chapter_eight_hw;
 mod chapter_five;
 mod chapter_four;
+mod chapter_nine;
 mod chapter_one;
 mod chapter_seven;
 mod chapter_six;
@@ -32,6 +33,7 @@ fn main() {
     // chapter_seven::chapter_seven();
     // println!("Chapter 8");
     // chapter_eight::chapter_eight();
-    println!("Chapter 8 HW");
-    chapter_eight_hw::chapter_eight_hw();
+    // println!("Chapter 8 HW");
+    // chapter_eight_hw::chapter_eight_hw();
+    chapter_nine::chapter_nine();
 }
